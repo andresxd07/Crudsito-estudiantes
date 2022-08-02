@@ -10,7 +10,15 @@ use App\Http\Controllers;
 
 
 /**
- * @property int $id
+ *     @property int $id
+ *   * @property string $name
+     * @property string $firstlastname
+     * @property string $secondlastname
+     * @property string $mail
+     * @property string $photo
+     * @property string $course
+     * @property string $gender
+     * @property string $school
  */
 class student extends Model
 {

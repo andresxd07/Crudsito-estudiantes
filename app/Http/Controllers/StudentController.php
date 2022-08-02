@@ -1,48 +1,72 @@
 <?php
 
+namespace App\Http\Controllers;
 
-namespace App\Http\Controllers\StudentController;
+use App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\student;
-use App\Repositories\StudentInterface;
+use App\Repositories\Contracts\StudentRepositoryInterface;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
-use function is_null;
-use function redirect;
 
+
+/**
+ * Class StudentController
+ * @package App\Http\Controllers
+ */
 class StudentController extends Controller
 {
-    protected $student;
-    public function __construct(StudentInterface $student)
+
+    //Public: Hace que la variable/funcion se pueda acceder desde cualquier lugar, por ejemplo, otras clases
+    //Private: Hace que la variable/funcion se pueda utlizar desde la misma clase que las define
+    //protected: Hace que la vaiablr/funcion se pueda acceder desde la clase que las define y tambien desde cualquier otra clase que herede de ella
+
+    /**
+     * @var StudentRepositoryInterface
+     */
+
+    /**
+     * @param StudentRepositoryInterface $studentRepository
+     */
+    public function __construct(StudentRepositoryInterface $studentRepository)
     {
-        $this->student = $student;
+        $this->studentRepository = $studentRepository;
     }
 
-    public function index(){
-        if(View::exists('student.index')){
-            return \view('student.index',[
-                'students' => $this->student->getAllData()
+    public function index()
+    {
+        if (View::exists('student.index')) {
+            return view('student.index',[
+                'students' => $this->studentRepository->getAllData() //Retorna la lista de estudiantes
             ]);
         }
+
     }
 
-    public function storeOrUpdate(Request $request,$id = null){
-        $data = $request->only(['Name', 'Firstname','Secondname','Mail','Photo','Course','Gender','School']);
-        if(!is_null($id)){ //update
-            $this->student->storeOrUpdate($id,$data);
-            return redirect()->route('student.index')->with('message','Ha sido actualizado!');
+    public function storeOrUpdate(Request $request, int $id)
+    {
+        $data = $request->only(['name', 'first_name','second_name','mail','photo','course','gender','school']); // TODO corregir nombres de variables
+        $this->studentRepository->storeOrUpdate($id, $data);
 
-    }}
+        return redirect()->route('student.index')->with('message', 'Ha sido creado!')
+        ;
 
-    public function view($id){
-        if(View::exists('student.edit')){
-            return view('student.edit',['student' => $this->student->view($id)]);
+    }
+
+    public function view(int $id)
+    {
+        if (View::exists('student.edit')) {
+            return view('student.edit',['student' => $this->studentRepository->view($id)]);
         }
+        //Retorna vista de edicion de estudiantes
     }
 
-    public function delete($id){
-        $this->student->delete($id);
-        return redirect()->route('student.index')->with('message','Ha sido borrado!');
+    public function delete(int $id)
+    {
+        $this->studentRepository->delete($id);
+        return redirect()->route('student.index')->with('message', 'Ha sido borrado!');
+        //Elimina un estudiante
     }
 }
