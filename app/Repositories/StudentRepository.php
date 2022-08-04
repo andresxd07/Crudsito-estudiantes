@@ -23,8 +23,8 @@ class StudentRepository implements StudentRepositoryInterface {
 public function getAllData() {
 
 
-    return Student::all();
-    //Retorna una lista de estudiantes
+    return Student::all();                       //Retorna una lista de estudiantes
+
 }
 
 
@@ -47,19 +47,19 @@ public function storeOrUpdate(array $data, int $id = null)
     $student->gender = $data['gender'];
     $student->school = $data['school'];
 
-    return $student->save();
-    //Si no existe el id crea un nuevo estudiante, si existe el id lo busca
+    return $student->save();        //Si no existe el id crea un nuevo estudiante, si existe el id lo busca
+
 }
 
 public function view($id){
 
-    return Student::find($id);
-    //Retorna la vista de edicion de estudiantes
+    return Student::find($id);      //Retorna la vista de edicion de estudiantes
+
 }
 
 public function delete($id){
 
-    return Student::find($id)->delete();
-    //Eliminia un estudiante
+    return Student::find($id)->delete();        //Eliminia un estudiante
+
 }
 }

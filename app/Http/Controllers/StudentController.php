@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers;
 
 use App\Repositories\Contracts\StudentRepositoryInterface;
 use Illuminate\Contracts\Foundation\Application;
@@ -45,6 +44,10 @@ class StudentController extends Controller
 
     }
 
+      /** * @param Request $request
+     * @param int $id
+     * @return RedirectResponse
+    */
     public function storeOrUpdate(Request $request, int $id)
     {
         $data = $request->only(['name', 'first_name','second_name','mail','photo','course','gender','school']); // TODO corregir nombres de variables
@@ -55,6 +58,12 @@ class StudentController extends Controller
 
     }
 
+
+     /**
+     * @param int $id
+     * @return Application|Factory|\Illuminate\Contracts\View\View
+     *
+     */
     public function view(int $id)
     {
         if (View::exists('student.edit')) {
@@ -63,6 +72,10 @@ class StudentController extends Controller
         //Retorna vista de edicion de estudiantes
     }
 
+   /**
+     * @param int $id
+     * @return RedirectResponse
+     */
     public function delete(int $id)
     {
         $this->studentRepository->delete($id);
