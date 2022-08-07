@@ -83,3 +83,8 @@ class StudentController extends Controller
         //Elimina un estudiante
     }
 }
+
+// Camel case => firstName  En variables
+// Pascal case => FirstName  definion de los nombres de las clasesgit gitZ
+// Snake case => first_name Nombres de variables
+// kebab case => first-name url
