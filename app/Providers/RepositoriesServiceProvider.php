@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Repositories\Contracts\StudentepositoryInterface;
+
+use App\Repositories\StudentRepositoryInterface;
 use App\Repositories\StudentRepository;
+use Illuminate\Support\ServiceProvider;
 
 class RepositoriesServiceProvider extends ServiceProvider {
 
