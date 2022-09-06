@@ -1,65 +1,79 @@
 <?php
 
 namespace App\Repositories;
+
 use App\Models\student;
-use App\Repositories\Contracts\StudentepositoryInterface;
 
-class StudentRepository implements StudentRepositoryInterface {
-
-    /**
-     * @param int $id
-     * @param string $name
-     * @param string $firstlastname
-     * @param string $secondlastname
-     * @param string $mail
-     * @param string $photo
-     * @param string $course
-     * @param string $gender
-     * @param string $school
-     *
-     */
-
-
-public function getAllData() {
-
-
-    return Student::all();                       //Retorna una lista de estudiantes
-
-}
-
-
-
-public function storeOrUpdate(array $data, int $id = null)
+class StudentRepository implements StudentRepositoryInterface 
 {
+        /**
+         * @param int $id
+         * @param string $name
+         * @param string $firstlastname
+         * @param string $secondlastname
+         * @param string $mail
+         * @param string $photo
+         * @param string $course
+         * @param string $gender
+         * @param string $school
+         *
+    */
 
-    if (is_null($id)) {
-        $student = new Student();
-    } else {
-        $student = Student::find($id);
+    public function getAllStudents()
+    {
+        return Student:: all();  //Carga todos los estudiantes
+    }
+    
+   
+    public function createStudent(array $data)
+    {
+        // Student::create([
+            //     'name' => $data['name'],
+            //     'firstlastname' => $data['firstlastname'],
+            //     'secondlastname' => $data['secondlastname'],
+            //     'mail' => $data['mail']
+            //     'photo' => $data['photo'],
+            //     'course' => $data['course'],
+            //     'gender' => $data['gendeer'],
+            //     'school' => $data['school']
+            // ]);
+            
+            $student = new Student();
+            $student->Name = $data['Name'];
+            $student->Firstlastname = $data['Firstlastname'];
+            $student->Secondlastname = $data['Secondlastname'];
+            $student->Mail = $data['Mail'];
+            $student->Photo = $data['Photo'];
+            $student->Course = $data['Course'];
+            $student->Gender = $data['Gender'];
+            $student->School = $data['School'];
+
+            return $student->save();  //Crea un estudiante
     }
 
-    $student->name = $data['name'];
-    $student->first_last_name = $data['first_lastname'];
-    $student->second_last_name = $data['second_lastname'];
-    $student->mail = $data['mail'];
-    $student->photo = $data['photo'];
-    $student->course = $data['course'];
-    $student->gender = $data['gender'];
-    $student->school = $data['school'];
+    public function editStudent(int $id)
+    {
+        return Student::find($id); 
+    }
 
-    return $student->save();        //Si no existe el id crea un nuevo estudiante, si existe el id lo busca
+    public function updateStudent($id, array $data)
+    {
+        $student = Student::find($id);
+        $student->Name = $data['Name'];
+        $student->Firstlastname = $data['Firstlastname'];
+        $student->Secondlastname = $data['Secondlastname'];
+        $student->Mail = $data['Mail'];
+        $student->Photo = $data['Photo'];
+        $student->Course = $data['Course'];
+        $student->Gender = $data['Gender'];
+        $student->School = $data['School'];
 
-}
+        return $student->save();  //Actualiza un estudiante
+    }
 
-public function view($id){
+    public function delete($id){
 
-    return Student::find($id);      //Retorna la vista de edicion de estudiantes
+        return Student::find($id)->delete();        //Eliminia un estudiante
 
-}
-
-public function delete($id){
-
-    return Student::find($id)->delete();        //Eliminia un estudiante
-
-}
+    }
 }
