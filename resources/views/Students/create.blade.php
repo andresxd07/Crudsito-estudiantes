@@ -4,11 +4,12 @@ Formulario de creacion de estudiantes
 <div class="container">
 
 
-<form action="{{ url ('/users')}}" method="post" enctype="multipart/form-data">
+<form action="{{ url ('/students')}}" method="post" enctype="multipart/form-data">
 @csrf
-@include('users.form', ['modo'=>'Crear']);
+@include('Students.form', ['modo'=>'Crear']);
 
 
 </form>
 </div>
 @endsection
+
