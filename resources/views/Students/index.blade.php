@@ -2,9 +2,6 @@
 
 @section('content')
 <div class="container">
-
-
-
     @if(Session::has('mensaje'))
     <div class="alert alert-success alert-dismissible" role="alert">
 
@@ -13,14 +10,10 @@
 
         <span aria-hidde="true">&times;</span>
     </button>
-
-
-
 </div>
 @endif
 
-
-<a href="{{ url('index')}}" class="btn btn-info">Registrer new student</a>
+<a href="{{ url('students/create')}}" class="btn btn-info">Registrer new student</a>
 </br>
 </br>
 <div class="table-responsive">
@@ -36,26 +29,17 @@
             <th>Course</th>
             <th>Gender</th>
             <th>School</th>
-
             <th>Actions</th>
-
         </tr>
     </thead>
-
 <tbody>
-
-    @foreach( $student as $students)
+    @foreach( $students as $student)
     <tr>
         <td>{{ $student->id  }}</td>
+        <td>       
+        <img src="images/{{ $student->Photo }}" class="img-thumbnail img-fluid" width="200" alt=".">
 
-
-        <td>
-        <img class="img-thumbnail img-fluid" src="{{ asset('storage').'/'.$student->Photo }}" width="100" alt="">
         </td>
-
-
-
-
 
         <td>{{ $student->Name }}</td>
         <td>{{ $student->Firstlastname  }}</td>
@@ -64,25 +48,18 @@
         <td>{{ $student->Course }}</td>
         <td>{{ $student->Gender }}</td>
         <td>{{ $student->School }}</td>
-
-
         <td>
 
-
-            <a href="{{ url('/students/'.$student->id.'/edit')}}" class="btn btn-warning">
+            <a href="{{ route('students.edit', $student->id)}}" class="btn btn-warning">
               Edit
             </a>
 
-
-            <form action="{{ url('/students/'.$student->id ) }}" method ="post" class="d-inline">
-            @csrf
-            {{ method_field('DELETE')}}
+            <form action="{{ route('students.delete', $student->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
 
             <input type="submit" onclick="return confirm('¿Quieres borrar?')" value="Delete" class="btn btn-danger">
-
             </form>
-
-
         </td>
     </tr>
     @endforeach
