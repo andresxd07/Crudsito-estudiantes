@@ -32,7 +32,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Debug Mode
     |--------------------------------------------------------------------------
     |
     | When your application is in debug mode, detailed error messages with
@@ -193,8 +192,9 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-         App\Repositories\RepositoriesServiceProvider::class,
+         App\Providers\RouteServiceProvider::class,
+         App\Providers\RepositoriesServiceProvider::class,
+         
 
     ],
 
