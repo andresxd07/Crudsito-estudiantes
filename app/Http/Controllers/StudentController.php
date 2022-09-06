@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Repositories\Contracts\StudentRepositoryInterface;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\View;
+use App\Repositories\StudentRepositoryInterface;
+use App\Models\Student;
 
 
 /**
@@ -20,56 +17,96 @@ class StudentController extends Controller
 
     //Public: Hace que la variable/funcion se pueda acceder desde cualquier lugar, por ejemplo, otras clases
     //Private: Hace que la variable/funcion se pueda utlizar desde la misma clase que las define
-    //protected: Hace que la vaiablr/funcion se pueda acceder desde la clase que las define y tambien desde cualquier otra clase que herede de ella
+    //protected: Hace que la variable/funcion se pueda acceder desde la clase que las define y tambien desde cualquier otra clase que herede de ella
 
     /**
      * @var StudentRepositoryInterface
      */
-
-    /**
-     * @param StudentRepositoryInterface $studentRepository
+       /**
+     * @param StudentRepositoryInterface $student
      */
-    public function __construct(StudentRepositoryInterface $studentRepository)
+
+    public function __construct(StudentRepositoryInterface $student)
     {
-        $this->studentRepository = $studentRepository;
+        $this->student = $student;
     }
 
     public function index()
     {
-        if (View::exists('student.index')) {
-            return view('student.index',[
-                'students' => $this->studentRepository->getAllData() //Retorna la lista de estudiantes
-            ]);
+        {
+            $students =  $this->student->getAllStudents();
+
+            return view('students.index')->with('students', $students); //Retorna todos los estudiantes
         }
 
     }
-
-      /** * @param Request $request
-     * @param int $id
+    /** *  @param int $id
      * @return RedirectResponse
     */
-    public function storeOrUpdate(Request $request, int $id)
+
+    public function create()
     {
-        $data = $request->only(['name', 'first_name','second_name','mail','photo','course','gender','school']); // TODO corregir nombres de variables
-        $this->studentRepository->storeOrUpdate($id, $data);
-
-        return redirect()->route('student.index')->with('message', 'Ha sido creado!')
-        ;
-
+        return view('students.create'); //Retorna formulario de creacion de  estudiantes
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'Name' => 'required',
+            'Firstlastname' => 'required',
+            'Secondlastname' => 'required',
+            'Mail' => 'required',
+            'Photo' => 'required|image|mimes:jpeg,png,svg|max:1024',
+            'Course' => 'required',
+            'Gender' => 'required',
+            'School' => 'required'
+        ]);
 
+        $data = $request->all();
+
+        if($image = $request->file('Photo')) {
+            $name = time(). '.' .$image->getClientOriginalName();
+            $image->move(public_path('images'), $name);
+            $data['Photo'] = "$name";
+        }
+
+        $this->student->createStudent($data);
+
+        return redirect('/students'); //Required and validate
+    }
+
+    public function edit($id)
+    {
+        $student=Student::find($id);
+        return view('students.edit')->with('student', $student); //Retorna vista de edicion de estudiantes
+    }
      /**
      * @param int $id
-     * @return Application|Factory|\Illuminate\Contracts\View\View
-     *
      */
-    public function view(int $id)
+    public function update(Request $request, int $id)
     {
-        if (View::exists('student.edit')) {
-            return view('student.edit',['student' => $this->studentRepository->view($id)]);
+        $request->validate([
+            'Name' => 'required',
+            'Firstlastname' => 'required',
+            'Secondlastname' => 'required',
+            'Mail' => 'required',
+            'Photo' => 'required|image|mimes:jpeg,png,svg|max:1024',
+            'Course' => 'required',
+            'Gender' => 'required',
+            'School' => 'required'
+        ]);
+
+        $data = $request->all();
+
+        if($image = $request->file('Photo')) {
+            $name = time(). '.' .$image->getClientOriginalName();
+            $image->move(public_path('images'), $name);
+            $data['Photo'] = "$name";
         }
-        //Retorna vista de edicion de estudiantes
+
+        $this->student->updateStudent($id, $data);
+
+        return redirect('/students'); //Actualiza un estudiante
     }
 
    /**
@@ -78,10 +115,14 @@ class StudentController extends Controller
      */
     public function delete(int $id)
     {
-        $this->studentRepository->delete($id);
-        return redirect()->route('student.index')->with('message', 'Ha sido borrado!');
-        //Elimina un estudiante
+        $this->student->delete($id);
+        return redirect()->route('students.index'); //Elimina un estudiante
+
     }
+     /**
+     * @param int $id
+     * @return RedirectResponse
+     */
 }
 
 // Camel case => firstName  En variables
