@@ -32,10 +32,10 @@
     <tr>
         <td>{{ $subject->id  }}</td>
        
-        <td>{{ $subject->NameSubject }}</td>
-        <td>{{ $subject->Teacher  }}</td>
-        <td>{{ $subject->Hours }}</td>
-        <td>{{ $subject->Days }}</td>
+        <td>{{ $subject->name_subject }}</td>
+        <td>{{ $subject->teacher  }}</td>
+        <td>{{ $subject->hours }}</td>
+        <td>{{ $subject->days }}</td>
         <td>
 
             <a href="{{ route('subjects.edit', $subject->id)}}" class="btn btn-warning">
@@ -49,8 +49,6 @@
             <input type="submit" onclick="return confirm('¿Quieres borrar?')" value="Delete" class="btn btn-danger">
             </form>
         </td>
-
-        
     </tr>
     @endforeach
 </tbody>
