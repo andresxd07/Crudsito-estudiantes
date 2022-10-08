@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Repositories\StudentRepositoryInterface;
+use App\Repositories\Contracts\StudentRepositoryInterface;
 use App\Models\Student;
-
 
 /**
  * Class StudentController
@@ -18,13 +17,6 @@ class StudentController extends Controller
     //Public: Hace que la variable/funcion se pueda acceder desde cualquier lugar, por ejemplo, otras clases
     //Private: Hace que la variable/funcion se pueda utlizar desde la misma clase que las define
     //protected: Hace que la variable/funcion se pueda acceder desde la clase que las define y tambien desde cualquier otra clase que herede de ella
-
-    /**
-     * @var StudentRepositoryInterface
-     */
-       /**
-     * @param StudentRepositoryInterface $student
-     */
 
     public function __construct(StudentRepositoryInterface $student)
     {
@@ -129,3 +121,4 @@ class StudentController extends Controller
 // Pascal case => FirstName  definion de los nombres de las clasesgit gitZ
 // Snake case => first_name Nombres de variables
 // kebab case => first-name url
+
