@@ -41,10 +41,10 @@ class SubjectController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'NameSubject' => 'required',
-            'Teacher' => 'required',
-            'Days' => 'required',
-            'Hours' => 'required'
+            'name_subject' => 'required',
+            'teacher' => 'required',
+            'days' => 'required',
+            'hours' => 'required'
         ]);
 
         $data = $request->all();
@@ -64,10 +64,10 @@ class SubjectController extends Controller
     public function update(Request $request, int $id)
     {
         $request->validate([
-            'NameSubject' => 'required',
-            'Teacher' => 'required',
-            'Hours' => 'required',
-            'Days' => 'required'
+            'name_subject' => 'required',
+            'teacher' => 'required',
+            'hours' => 'required',
+            'days' => 'required'
         ]);
 
         $data = $request->all();
