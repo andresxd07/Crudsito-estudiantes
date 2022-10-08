@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Repositories\Contracts\SubjectRepositoryInterface;
 use App\Models\Subject;
 
-
 /**
  * Class SubjectController
  * @package App\Http\Controllers
