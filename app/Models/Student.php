@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use App\Repositories\StudentRepository;
 use App\Http\Controllers;
 
-
-
 /**
  *     @property int $id
  *   * @property string $name
@@ -27,7 +25,4 @@ class student extends Model
     protected $fillable = [
         'name'
     ];
-
-
-
 }
