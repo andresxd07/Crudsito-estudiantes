@@ -9,18 +9,11 @@ use App\Models\Subject;
 
 
 /**
- * Class StudentController
+ * Class SubjectController
  * @package App\Http\Controllers
  */
 class SubjectController extends Controller
 {
-
-    /**
-     * @var SubjectRepositoryInterface
-     */
-       /**
-     * @param SubjectRepositoryInterface $subject
-     */
 
     public function __construct(SubjectRepositoryInterface $subject)
     {
