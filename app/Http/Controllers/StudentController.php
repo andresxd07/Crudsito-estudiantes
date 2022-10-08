@@ -44,14 +44,14 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'Name' => 'required',
-            'Firstlastname' => 'required',
-            'Secondlastname' => 'required',
-            'Mail' => 'required',
-            'Photo' => 'required|image|mimes:jpeg,png,svg|max:1024',
-            'Course' => 'required',
-            'Gender' => 'required',
-            'School' => 'required'
+            'name' => 'required',
+            'first_last_name' => 'required',
+            'second_last_name' => 'required',
+            'mail' => 'required',
+            'photo' => 'required|image|mimes:jpeg,png,svg|max:1024',
+            'course' => 'required',
+            'gender' => 'required',
+            'school' => 'required'
         ]);
 
         $data = $request->all();
@@ -78,22 +78,22 @@ class StudentController extends Controller
     public function update(Request $request, int $id)
     {
         $request->validate([
-            'Name' => 'required',
-            'Firstlastname' => 'required',
-            'Secondlastname' => 'required',
-            'Mail' => 'required',
-            'Photo' => 'required|image|mimes:jpeg,png,svg|max:1024',
-            'Course' => 'required',
-            'Gender' => 'required',
-            'School' => 'required'
+            'name' => 'required',
+            'first_last_name' => 'required',
+            'second_last_name' => 'required',
+            'mail' => 'required',
+            'photo' => 'required|image|mimes:jpeg,png,svg|max:1024',
+            'course' => 'required',
+            'gender' => 'required',
+            'school' => 'required'
         ]);
 
         $data = $request->all();
 
-        if($image = $request->file('Photo')) {
+        if($image = $request->file('photo')) {
             $name = time(). '.' .$image->getClientOriginalName();
             $image->move(public_path('images'), $name);
-            $data['Photo'] = "$name";
+            $data['photo'] = "$name";
         }
 
         $this->student->updateStudent($id, $data);
