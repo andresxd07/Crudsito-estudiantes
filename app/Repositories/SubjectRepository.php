@@ -2,18 +2,18 @@
 
 namespace App\Repositories;
 
-use App\Models\subject;
+use App\Models\Subject;
 use App\Repositories\Contracts\SubjectRepositoryInterface;
 
 
 class SubjectRepository implements SubjectRepositoryInterface 
 {
         /**
-         * @param int $id
-         * @param string $NameSubject
-         * @param string $Teacher
-         * @param integer $Hours
-         * @param string $Days
+         * @property int $id
+         * @property string $NameSubject
+         * @property string $Teacher
+         * @property integer $Hours
+         * @property string $Days
          *
     */
 
@@ -63,3 +63,4 @@ class SubjectRepository implements SubjectRepositoryInterface
 
     }
 }
+
