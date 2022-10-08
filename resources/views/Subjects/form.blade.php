@@ -17,18 +17,18 @@
 
 <div class="form-group">
 
-<label for="NameSubject"> Nombre de la materia </label>
-<input type="text" class="form-control" name="NameSubject" value="{{ isset($subject->NameSubject)?$subject->NameSubject:old('NameSubject')}}" id="NameSubject"> 
+<label for="name_subject"> Nombre de la materia </label>
+<input type="text" class="form-control" name="name_subject" value="{{ isset($subject->name_subject)?$subject->name_subject:old('name_subject')}}" id="name_subject"> 
 </div>
 
 <div class="form-group">
-<label for="Teacher">  Profesor </label>
-<input type="text" class="form-control" name="Teacher" value="{{ isset($subject->Teacher)?$subject->Teacher:old('Teacher') }}" id="Teacher">  
+<label for="teacher">  Profesor </label>
+<input type="text" class="form-control" name="teacher" value="{{ isset($subject->teacher)?$subject->teacher:old('teacher') }}" id="teacher">  
 </div>
 
 <div class="form-group">
-<label for="Hours"> Horas a la semana</label>
-<select name="Hours" class="form-control" value="{{ isset($subject->Hours)?$subject->Hours:old('Hours') }}" id="Hours">  
+<label for="hours"> Horas a la semana</label>
+<select name="hours" class="form-control" value="{{ isset($subject->hours)?$subject->hours:old('hours') }}" id="hours">  
   <option disabled=""> Selecciona una opcion</option>
 <option value="Una"> Una</option>
 <option value="Dos"> Dos</option>
@@ -42,8 +42,8 @@
 </div>
 
 <div class="form-group">
-<label for="Days"> Dias </label>
-<select class="form-control" name="Days" value="{{ isset($subject->Days)?$subject->Days:old('Days') }}" id="Days">  
+<label for="days"> Dias </label>
+<select class="form-control" name="days" value="{{ isset($subject->days)?$subject->days:old('days') }}" id="days">  
 <option disabled=""> Selecciona una opcion</option>
 <option value="Lunes"> Lunes</option>
 <option value="Martes"> Martes</option>
