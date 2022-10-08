@@ -2,10 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Repositories\StudentRepository;
-use App\Http\Controllers;
 
 /**
  *     @property int $id
@@ -18,11 +15,18 @@ use App\Http\Controllers;
      * @property string $gender
      * @property string $school
  */
-class student extends Model
+class Student extends Model
 {
     // use HasFactory; // Permite crear registros de prueba para cargar la base de datos con informacion falsa o de prueba
     protected $table = 'students';
+    /**
+     * @var string[]
+     */
     protected $fillable = [
         'name'
     ];
+     /**
+     * @var string
+     */
 }
+
