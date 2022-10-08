@@ -41,13 +41,13 @@
 
         </td>
 
-        <td>{{ $student->Name }}</td>
-        <td>{{ $student->Firstlastname  }}</td>
-        <td>{{ $student->Secondlastname }}</td>
-        <td>{{ $student->Mail }}</td>
-        <td>{{ $student->Course }}</td>
-        <td>{{ $student->Gender }}</td>
-        <td>{{ $student->School }}</td>
+        <td>{{ $student->name }}</td>
+        <td>{{ $student->first_last_name  }}</td>
+        <td>{{ $student->second_last_name }}</td>
+        <td>{{ $student->mail }}</td>
+        <td>{{ $student->course }}</td>
+        <td>{{ $student->gender }}</td>
+        <td>{{ $student->school }}</td>
         <td>
 
             <a href="{{ route('students.edit', $student->id)}}" class="btn btn-warning">
@@ -61,6 +61,8 @@
             <input type="submit" onclick="return confirm('¿Quieres borrar?')" value="Delete" class="btn btn-danger">
             </form>
         </td>
+
+       
     </tr>
     @endforeach
 </tbody>
