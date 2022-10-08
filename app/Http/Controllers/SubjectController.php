@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Repositories\Contracts\SubjectRepositoryInterface;
 use App\Models\Subject;
 
+
 /**
  * Class SubjectController
  * @package App\Http\Controllers
@@ -28,7 +29,7 @@ class SubjectController extends Controller
         }
 
     }
-    /** *  @param int $id
+    /** * 
      * @return RedirectResponse
     */
 
@@ -47,7 +48,6 @@ class SubjectController extends Controller
         ]);
 
         $data = $request->all();
-
         $this->subject->createSubject($data);
 
         return redirect('/subjects'); //Required and validate
@@ -71,7 +71,6 @@ class SubjectController extends Controller
         ]);
 
         $data = $request->all();
-
         $this->subject->updateSubject($id, $data);
 
         return redirect('/subjects'); //Actualiza una materia
