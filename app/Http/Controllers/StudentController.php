@@ -56,10 +56,10 @@ class StudentController extends Controller
 
         $data = $request->all();
 
-        if($image = $request->file('Photo')) {
+        if($image = $request->file('photo')) {
             $name = time(). '.' .$image->getClientOriginalName();
             $image->move(public_path('images'), $name);
-            $data['Photo'] = "$name";
+            $data['photo'] = "$name";
         }
 
         $this->student->createStudent($data);
