@@ -37,7 +37,7 @@
     <tr>
         <td>{{ $student->id  }}</td>
         <td>       
-        <img src="images/{{ $student->Photo }}" class="img-thumbnail img-fluid" width="200" alt=".">
+        <img src="images/{{ $student->photo }}" class="img-thumbnail img-fluid" width="200" alt=".">
 
         </td>
 
