@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $table->string('NameSubject');
-            $table->string('Teacher');
-            $table->string('Hours');
-            $table->string('Days');
+            $table->string('name_subject');
+            $table->string('teacher');
+            $table->string('hours');
+            $table->string('days');
 
             $table->timestamps();
         });
