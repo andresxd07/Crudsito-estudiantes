@@ -2,20 +2,21 @@
 
 namespace App\Repositories;
 
-use App\Models\student;
+use App\Models\Student;
+use App\Repositories\Contracts\StudentRepositoryInterface;
 
 class StudentRepository implements StudentRepositoryInterface 
 {
         /**
-         * @param int $id
-         * @param string $name
-         * @param string $firstlastname
-         * @param string $secondlastname
-         * @param string $mail
-         * @param string $photo
-         * @param string $course
-         * @param string $gender
-         * @param string $school
+         * @property int $id
+         * @property string $name
+         * @property string $firstlastname
+         * @property string $secondlastname
+         * @property string $mail
+         * @property string $photo
+         * @property string $course
+         * @property string $gender
+         * @property string $school
          *
     */
 
@@ -77,3 +78,4 @@ class StudentRepository implements StudentRepositoryInterface
 
     }
 }
+
