@@ -10,8 +10,8 @@ class StudentRepository implements StudentRepositoryInterface
         /**
          * @property int $id
          * @property string $name
-         * @property string $firstlastname
-         * @property string $secondlastname
+         * @property string $first_last_name
+         * @property string $second_last_name
          * @property string $mail
          * @property string $photo
          * @property string $course
@@ -30,8 +30,8 @@ class StudentRepository implements StudentRepositoryInterface
     {
         // Student::create([
             //     'name' => $data['name'],
-            //     'firstlastname' => $data['firstlastname'],
-            //     'secondlastname' => $data['secondlastname'],
+            //     'first_last_name' => $data['first_last_name'],
+            //     'second_last_name' => $data['second_last_name'],
             //     'mail' => $data['mail']
             //     'photo' => $data['photo'],
             //     'course' => $data['course'],
@@ -40,14 +40,14 @@ class StudentRepository implements StudentRepositoryInterface
             // ]);
             
             $student = new Student();
-            $student->Name = $data['Name'];
-            $student->Firstlastname = $data['Firstlastname'];
-            $student->Secondlastname = $data['Secondlastname'];
-            $student->Mail = $data['Mail'];
-            $student->Photo = $data['Photo'];
-            $student->Course = $data['Course'];
-            $student->Gender = $data['Gender'];
-            $student->School = $data['School'];
+            $student->name = $data['name'];
+            $student->first_last_name = $data['first_last_name'];
+            $student->second_last_name = $data['second_last_name'];
+            $student->mail = $data['mail'];
+            $student->photo = $data['photo'];
+            $student->course = $data['course'];
+            $student->gender = $data['gender'];
+            $student->school = $data['school'];
 
             return $student->save();  //Crea un estudiante
     }
@@ -60,14 +60,14 @@ class StudentRepository implements StudentRepositoryInterface
     public function updateStudent($id, array $data)
     {
         $student = Student::find($id);
-        $student->Name = $data['Name'];
-        $student->Firstlastname = $data['Firstlastname'];
-        $student->Secondlastname = $data['Secondlastname'];
-        $student->Mail = $data['Mail'];
-        $student->Photo = $data['Photo'];
-        $student->Course = $data['Course'];
-        $student->Gender = $data['Gender'];
-        $student->School = $data['School'];
+        $student->name = $data['name'];
+        $student->first_last_name = $data['first_last_name'];
+        $student->second_last_name = $data['second_last_name'];
+        $student->mail = $data['mail'];
+        $student->photo = $data['photo'];
+        $student->course = $data['course'];
+        $student->gender = $data['gender'];
+        $student->school = $data['school'];
 
         return $student->save();  //Actualiza un estudiante
     }
@@ -78,4 +78,3 @@ class StudentRepository implements StudentRepositoryInterface
 
     }
 }
-
